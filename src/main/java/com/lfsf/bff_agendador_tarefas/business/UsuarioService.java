@@ -23,7 +23,7 @@ public class UsuarioService {
         return client.salvaUsuario(usuarioDTO);
     }
 
-    public String loginUsuario (LoginRequestDTO dto){
+    public String loginUsuario(LoginRequestDTO dto) {
         return client.login(dto);
     }
 
@@ -33,6 +33,14 @@ public class UsuarioService {
 
     public void deletaUsuarioPorEmail(String email, String token) {
         client.deletaUsuarioPorEmail(email, token);
+    }
+
+    public void deletaTelefone(Long id, String token) {
+        client.deletaTelefone(id, token);
+    }
+
+    public void deletaEndereco(Long id, String token) {
+        client.deletaEndereco(id, token);
     }
 
     public UsuarioDTOResponse atualizaDadosUsuario(String token, UsuarioDTORequest dto) {
@@ -56,7 +64,7 @@ public class UsuarioService {
         return client.cadastraTelefone(dto, token);
     }
 
-    public ViaCepDTOResponse buscarEnderecoPorCep(String cep){
+    public ViaCepDTOResponse buscarEnderecoPorCep(String cep) {
         return client.buscarDadosCep(cep);
     }
 }

@@ -9,7 +9,6 @@ import com.lfsf.bff_agendador_tarefas.business.dto.out.TelefoneDTOResponse;
 import com.lfsf.bff_agendador_tarefas.business.dto.out.UsuarioDTOResponse;
 import com.lfsf.bff_agendador_tarefas.business.dto.out.ViaCepDTOResponse;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @FeignClient(name = "usuario", url = "${usuario.url}")
@@ -29,6 +28,14 @@ public interface UsuarioClient {
     @DeleteMapping("/{email}")
     void deletaUsuarioPorEmail(@PathVariable String email,
                                @RequestHeader("Authorization") String token);
+
+    @DeleteMapping("/telefone")
+    void deletaTelefone(@RequestParam("id") Long id,
+                        @RequestHeader("Authorization") String token);
+
+    @DeleteMapping("/endereco")
+    void deletaEndereco(@RequestParam("id") Long id,
+                        @RequestHeader("Authorization") String token);
 
     @PutMapping
     UsuarioDTOResponse atualizaDadoUsuario(@RequestBody UsuarioDTORequest dto,
@@ -53,7 +60,7 @@ public interface UsuarioClient {
                                          @RequestHeader("Authorization") String token);
 
     @GetMapping("/endereco/{cep}")
-    ViaCepDTOResponse buscarDadosCep(@PathVariable("cep")String cep);
+    ViaCepDTOResponse buscarDadosCep(@PathVariable("cep") String cep);
 
 }
 
